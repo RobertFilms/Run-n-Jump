@@ -6,10 +6,13 @@ class Player {
     this.xv = 0;
     this.w = w;
     this.h = h;
+    this.color = 'blue';
     this.onGround = false;
+    this.dead = false;
   }
 
   physics () {
+    //gravity in the works
     if (!this.onGround) {
       this.yv += gravity;
     }else {
@@ -18,9 +21,16 @@ class Player {
     this.y += this.yv;
     this.x += this.xv;
 
+    //checks if player is on ground
+    if(this.y + this.h >= GROUND){
+      this.y = GROUND - this.h;
+      this.onGround = true;
+    } else {
+      this.onGround = false;
+    }
+
     if (this.y > canvas.height) {
-      this.y = 0;
-      this.yv = 0;
+      this.dead = true;
     }
 
     /*
@@ -33,7 +43,7 @@ class Player {
   }
 
   draw () {
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 
