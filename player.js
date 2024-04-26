@@ -38,6 +38,10 @@ class Player {
       this.dead = true;
     }
 
+    if (this.yv >= 5) {
+      this.yv = 4.5;
+    }
+
     this.y += this.yv;
     this.x += this.xv;
 
