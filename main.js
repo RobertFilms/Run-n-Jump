@@ -32,11 +32,6 @@ document.addEventListener('keydown', event => {
     //console.log('space pressed')
   }
 })
-document.addEventListener('keyup', event => {
-  if (event.code == 'Space') {
-    player.jumping = false;
-  }
-})
 
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);

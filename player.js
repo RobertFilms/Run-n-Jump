@@ -10,6 +10,7 @@ class Player {
     this.onGround = false;
     this.dead = false;
     this.jumping = false;
+    this.inAir = false;
   }
 
   physics () {
@@ -30,8 +31,10 @@ class Player {
       this.y = GROUND - this.h;
       this.onGround = true;
       this.jumping = false;
+      this.inAir = false;
     } else {
       this.onGround = false;
+      this.inAir = true;
     }
 
     if (this.y > canvas.height) {
@@ -56,10 +59,11 @@ class Player {
 
   jump () {
     if (this.jumping == true) {
-      this.y = 485;
+      this.onGround = false;
+      this.inAir = true;
+      this.yv = -90;
       //console.log('jump')
     }
-  }
 
   draw () {
     ctx.fillStyle = this.color;
