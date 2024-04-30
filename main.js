@@ -27,16 +27,15 @@ function drawGround() {
 }
 
 document.addEventListener('keydown', event => {
-  if (event.code == 'Space') {
-    player.jumping = true;
-    //console.log('space pressed')
+  if (event.key == ' ') {
+    player.jump();
+    console.log(player.jumping);
   }
 })
 
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    player.jump();
+    //console.log(player.yv);
     player.draw();
     player.update();
     drawGround();

@@ -10,43 +10,26 @@ class Player {
     this.onGround = false;
     this.dead = false;
     this.jumping = false;
-    this.inAir = false;
   }
 
   physics () {
     //gravity in the works
-    if (!this.onGround) {
-      this.yv += gravity;
-    }else {
-      /*
-      I have a problem with this, It is keeping the jump function from working
-      due to it setting the yv to zero. So I was thinking insead of setting the yv
-      I set the actual y position due to the charter not moving at all
-      */
-      this.yv = 0;
-    }
+    this.yv += gravity;
+    this.y += this.yv;
+    this.x += this.xv;
 
     //checks if player is on ground
     if(this.y + this.h >= GROUND){
       this.y = GROUND - this.h;
       this.onGround = true;
       this.jumping = false;
-      this.inAir = false;
     } else {
       this.onGround = false;
-      this.inAir = true;
     }
 
     if (this.y > canvas.height) {
       this.dead = true;
     }
-
-    if (this.yv >= 5) {
-      this.yv = 4.5;
-    }
-
-    this.y += this.yv;
-    this.x += this.xv;
 
     /*
     if (this.y + this.h > canvas.h) {
@@ -58,11 +41,10 @@ class Player {
   }
 
   jump () {
-    if (this.jumping == true) {
+    if(!this.jumping){
       this.onGround = false;
-      this.inAir = true;
-      this.yv = -90;
-      //console.log('jump')
+      this.jumping = true;
+      this.yv = -10;
     }
   }
   
