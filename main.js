@@ -16,10 +16,13 @@ window.onresize = function () {
   canvas.height = window.innerHeight;
 }
 
-let gravity = .5;
+let gravity = 1.5;
 let groundColor = '#993300';
 const GROUND = canvas.height / 1.5;
 let player = new Player(125, 425, 25, 25);
+
+let flies = [];
+let cacti = [];
 
 function drawGround() {
     ctx.fillStyle = groundColor;
@@ -33,12 +36,39 @@ document.addEventListener('keydown', event => {
   }
 })
 
+function RandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function SpawnFly(){
+  if(RandomInt(1, 10) > 5){
+    flies.push(new Fly());
+  }
+}
+
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //console.log(player.yv);
     player.draw();
     player.update();
     drawGround();
+    for(f in flies){
+        let fly = flies[f];
+        fly.draw();
+        fly.update();
+        if(collision(player, fly)){
+          player.dead = true;
+        }
+    }
+    for(c in cacti){
+        let cactus = cacti[c];
+        cactus.draw();
+        cactus.update();
+        if(collision(player, cactus)){
+          player.dead = true;
+        }
+    }
     requestAnimationFrame(Update);
 }
 Update();
+setInterval(SpawnFly, 1000);

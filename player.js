@@ -10,6 +10,7 @@ class Player {
     this.onGround = false;
     this.dead = false;
     this.jumping = false;
+    this.jumpHeight = 20;
   }
 
   physics () {
@@ -44,7 +45,7 @@ class Player {
     if(!this.jumping){
       this.onGround = false;
       this.jumping = true;
-      this.yv = -10;
+      this.yv = -this.jumpHeight;
     }
   }
   
@@ -54,6 +55,10 @@ class Player {
   }
 
   update () {
+    if (this.dead == true) {
+      document.getElementById('da').innerHTML = 'YOU DIED!';
+    }
+
     this.physics();
   }
 }
