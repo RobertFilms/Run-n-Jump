@@ -10,6 +10,20 @@
             top: 0px;
             left: 0px;
         }
+        #deathScreen {
+            display: none;
+            position: fixed;
+            inset: 0px;
+            width: absolute;
+            height: absolute;
+            max-width: absolute;
+            max-height: absolute;
+            margin: auto;
+            background-image: url(Untitled.jpeg);
+            background-size: cover;
+            text-align: center;
+            opacity: 0.5;
+        }
     </style>
     <canvas id="canvas"></canvas>
     <script src="collision.js"></script>
@@ -19,6 +33,8 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h1 id="da">ALIVE</h1>
+    <div id="deathScreen">
+        <h1 id="da">DEAD</h1>
+    </div>
 </body>
 </html>

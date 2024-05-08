@@ -1,19 +1,23 @@
 class Cactus {
   constructor(x, y, w, h) {
-    this.spawnPos = GROUND - 20;
-    this.x = this.spawnPos;
-    this.y = this.spawnPositions[RandomInt(0, this.spawnPos.length - 1)];;
-    this.w = 8;
+    this.spawnPos = GROUND - 25;
+    this.x = canvas.width;
+    this.y = this.spawnPos;
+    this.w = 12;
     this.h = 25;
-    this.xv = 7;
+    this.xv = -7;
   }
 
   physics () {
-    this.x += -this.xv;
+    this.x += this.xv;
   }
 
   draw () {
     ctx.fillStyle = 'green';
     ctx.fillRect(this.x, this.y, this.w, this.h);
+  }
+
+  update () {
+    this.physics();
   }
 }

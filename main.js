@@ -41,10 +41,21 @@ function RandomInt(min, max) {
 }
 
 function SpawnFly(){
-  if(RandomInt(1, 10) > 5){
+  if(RandomInt(1, 10) > 7){
     flies.push(new Fly());
   }
 }
+
+function SpawnCactus(){
+  if(RandomInt(1, 10) > 5){
+    cacti.push(new Cactus());
+  }
+}
+
+function showDeathScreen(){
+  document.getElementById('deathScreen').style.display = 'block';
+}
+
 
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -68,7 +79,11 @@ function Update() {
           player.dead = true;
         }
     }
+    if(player.dead){
+      showDeathScreen();
+    }
     requestAnimationFrame(Update);
 }
 Update();
-setInterval(SpawnFly, 1000);
+setInterval(SpawnCactus, 1000);
+setInterval(SpawnFly, 2000);

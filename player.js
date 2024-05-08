@@ -50,15 +50,13 @@ class Player {
   }
   
   draw () {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    if(!this.dead){
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.x, this.y, this.w, this.h);
+    }
   }
 
   update () {
-    if (this.dead == true) {
-      document.getElementById('da').innerHTML = 'YOU DIED!';
-    }
-
     this.physics();
   }
 }
