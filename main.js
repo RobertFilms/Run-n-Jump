@@ -1,8 +1,6 @@
 /*
 ----- TO DO LIST -----
 1. Get things to spawn
-2. get player y movement going (jump)
-3. 
 */
 
 const canvas = document.getElementById('canvas');
