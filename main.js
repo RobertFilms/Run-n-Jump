@@ -55,7 +55,7 @@ function showDeathScreen(){
 }
 
 /*
-function stopScreen(){
+function stopScroll(){
   if(player.dead == true){
     
   }
