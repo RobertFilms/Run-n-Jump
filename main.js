@@ -1,10 +1,11 @@
 /*
 ----- TO DO LIST -----
-1. Get things to spawn
+1. 
 */
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const video = document.getElementById('video');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -52,18 +53,19 @@ function SpawnCactus(){
 
 function showDeathScreen(){
   document.getElementById('deathScreen').style.display = 'inline';
+  video.style.display = 'inline';
 }
 
-/*
-function stopScroll(){
-  if(player.dead == true){
-    
-  }
+function respawn(){
+  player.dead = false;
+  video.style.display = 'none';
 }
-*/
 
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (player.dead) {
+      return;
+    }
     //console.log(player.yv);
     player.draw();
     player.update();
@@ -91,4 +93,4 @@ function Update() {
 }
 Update();
 setInterval(SpawnCactus, 1000);
-setInterval(SpawnFly, 2000);
+setInterval(SpawnFly, 1500);
