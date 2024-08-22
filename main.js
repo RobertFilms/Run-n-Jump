@@ -51,9 +51,16 @@ function SpawnCactus(){
 }
 
 function showDeathScreen(){
-  document.getElementById('deathScreen').style.display = 'block';
+  document.getElementById('deathScreen').style.display = 'inline';
 }
 
+/*
+function stopScreen(){
+  if(player.dead == true){
+    
+  }
+}
+*/
 
 function Update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);

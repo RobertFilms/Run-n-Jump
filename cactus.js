@@ -1,5 +1,5 @@
 class Cactus {
-  constructor(x, y, w, h) {
+  constructor(xv) {
     this.spawnPos = GROUND - 25;
     this.x = canvas.width;
     this.y = this.spawnPos;

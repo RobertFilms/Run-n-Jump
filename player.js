@@ -1,5 +1,5 @@
 class Player {
-  constructor(x, y, w, h, jumping) {
+  constructor(x, y, w, h, dead) {
     this.x = x;
     this.y = y;
     this.yv = 0;
