@@ -5,7 +5,7 @@
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const video = document.getElementById('video');
+let video = document.getElementById('myVideo');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -53,15 +53,17 @@ function SpawnCactus(){
 
 function showDeathScreen(){
   document.getElementById('deathScreen').style.display = 'inline';
-  video.style.display = 'inline';
 }
 
 function respawn(){
   player.dead = false;
-  video.style.display = 'none';
+  document.getElementById('deathScreen').style.display = 'none';
+  flies = [];
+  cacti = [];
+  update();
 }
 
-function Update() {
+function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (player.dead) {
       return;
@@ -89,8 +91,8 @@ function Update() {
     if(player.dead){
       showDeathScreen();
     }
-    requestAnimationFrame(Update);
+    requestAnimationFrame(update);
 }
-Update();
+update();
 setInterval(SpawnCactus, 1000);
 setInterval(SpawnFly, 1500);

@@ -18,14 +18,6 @@ class Fly {
   }
 
   update () {
-    if(Player.dead == true){
-      this.xv = 0;
-    }
-
-    if(this.xv <= -7){
-      console.log('zero xv fly');
-    }
-    
     this.physics();
   }
 }

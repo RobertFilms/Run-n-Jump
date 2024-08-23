@@ -23,6 +23,11 @@
             text-align: center;
             opacity: 0.8;
         }
+        #title {
+            font-size: 100px;
+            color: rgb(255, 0, 0);
+            font-family: 'Press Start 2P', cursive;
+        }
     </style>
     <canvas id="canvas"></canvas>
     <script src="collision.js"></script>
@@ -30,6 +35,7 @@
     <script src="fly.js"></script>
     <script src="cactus.js"></script>
     <script src="main.js"></script>
+    <script src="menu.js"></script>
 </head>
 <body>
     <div id="deathScreen">
@@ -38,5 +44,9 @@
         <video autoplay muted loop id="myVideo">
         <source src="WIN.mp4" type="video/mp4">
     </div>
+
+    <div id="mainMenu">
+        <h1 id="title">Run n' Jump</h1>
+        <button id="startbtn" onClick="start()">Start</button>
 </body>
 </html>
