@@ -5,7 +5,7 @@ class Cactus {
     this.y = this.spawnPos;
     this.w = 12;
     this.h = 25;
-    this.xv = -7;
+    this.xv = -20;
   }
 
   physics () {
@@ -20,4 +20,5 @@ class Cactus {
   update () {
     this.physics();
   }
+  
 }

@@ -40,13 +40,13 @@ function RandomInt(min, max) {
 }
 
 function SpawnFly(){
-  if(RandomInt(1, 10) > 7){
+  if(RandomInt(1, 10) > 5){
     flies.push(new Fly());
   }
 }
 
 function SpawnCactus(){
-  if(RandomInt(1, 10) > 5){
+  if(RandomInt(1, 10) > 3){
     cacti.push(new Cactus());
   }
 }
