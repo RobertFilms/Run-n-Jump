@@ -60,6 +60,7 @@ function showDeathScreen(){
 function respawn(){
   player.dead = false;
   document.getElementById('deathScreen').style.display = 'none';
+  score = 0;
   flies = [];
   cacti = [];
   update();
