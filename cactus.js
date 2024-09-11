@@ -12,7 +12,7 @@ class Cactus {
     this.x += this.xv;
 
     function cacSpeedinc() {
-      if (speedHelper >= 500) {
+      if (speedHelper >= 300) {
         speedHelper = 0;
         this.xv -= 1;
       }
