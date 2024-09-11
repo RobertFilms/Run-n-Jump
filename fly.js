@@ -41,6 +41,7 @@ class Fly {
 
   //UPDATE
   update () {
+    
     //Run the physics function
     this.physics();
   }
