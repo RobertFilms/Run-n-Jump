@@ -10,6 +10,8 @@ class Fly {
     this.w = 15;
     this.h = 15;
     this.xv = -15; 
+    this.jitterIntensity = 1;
+    this.jitterTick = 0;
     speed = this.xv;
   }
 
@@ -39,10 +41,21 @@ class Fly {
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 
+  //JITTER
+  jitter(){
+
+    this.jitterTick++;
+
+    //Make the fly jitter around
+    this.x += (Math.sin(this.jitterTick * this.jitterIntensity));
+    this.y += (Math.sin(this.jitterTick * this.jitterIntensity));
+  }
+
   //UPDATE
   update () {
     
     //Run the physics function
     this.physics();
+    this.jitter();
   }
 }
