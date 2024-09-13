@@ -1,7 +1,7 @@
 //New class player
 class Player {
   constructor(x, y, w, h, dead) {
-    
+
     //Setting up players vars
     this.x = x;
     this.y = y;
@@ -17,7 +17,7 @@ class Player {
   }
 
   //THIS FUNCTION IS MAKING THE PLAYERS PHYSICS
-  physics () {
+  physics() {
 
     //gravity in the works
     this.yv += gravity;
@@ -25,7 +25,7 @@ class Player {
     this.x += this.xv;
 
     //checks if player is on ground
-    if(this.y + this.h >= GROUND){
+    if (this.y + this.h >= GROUND) {
       this.y = GROUND - this.h;
       //Set onGround var to true
       this.onGround = true;
@@ -52,10 +52,10 @@ class Player {
   }
 
   //THIS FUNCTION IS ALLOWING THE PLAYER TO JUMP
-  jump () {
+  jump() {
 
     //If player is not jumping
-    if(!this.jumping){
+    if (!this.jumping) {
       //Set the onGround var to false
       this.onGround = false;
       //Set the jumping var to true
@@ -64,12 +64,12 @@ class Player {
       this.yv = -this.jumpHeight;
     }
   }
-  
+
   //THIS FUNCTION DRAWS THE PLAYER TO THE SCREEN
-  draw () {
+  draw() {
 
     //Checks if player is not dead
-    if(!this.dead){
+    if (!this.dead) {
       //Draw the player
       ctx.fillStyle = this.color;
       ctx.fillRect(this.x, this.y, this.w, this.h);
@@ -77,7 +77,7 @@ class Player {
   }
 
   //THIS FUNCTION UPDATES ALL THE PLAYERS FUNCTIONS
-  update () {
+  update() {
 
     //Run the physics function to make the movements of the player
     this.physics();

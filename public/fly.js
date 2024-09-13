@@ -1,40 +1,41 @@
 
-var speed;
+//var speed;
 class Fly {
   constructor(xv) {
-    
+
     //Setting all the flies vars
     this.spawnPositions = [GROUND - 50, GROUND - 90];
     this.x = canvas.width;
     this.y = this.spawnPositions[RandomInt(0, this.spawnPositions.length - 1)];
     this.w = 15;
     this.h = 15;
-    this.xv = -15; 
+    this.xv = -15;
     this.jitterIntensity = 1;
     this.jitterTick = 0;
-    speed = this.xv;
+    this.sprite = new Image();
+    this.sprite.src ='';
+    //speed = this.xv;
+  }
+
+
+  //FLY SPEED INC
+  flySpeedinc() {
+    //If the score is 300
+    if (speedHelper >= 300) {
+      speedHelper = 0;
+      this.xv--;
+    }
   }
 
   //PHYSICS
-  physics () {
+  physics() {
 
     //Makes the fly go to the left
     this.x += this.xv;
-
-    //Up the flies speed every 500 score
-    function flySpeedinc() {
-      //If the score is 500
-      if (speedHelper >= 500) {
-        speedHelper = 0;
-        speed--;
-      }
-    }
-    //Run the function
-    flySpeedinc();
   }
 
   //DRAW
-  draw () {
+  draw() {
 
     //Fly color black
     ctx.fillStyle = 'black';
@@ -42,7 +43,7 @@ class Fly {
   }
 
   //JITTER
-  jitter(){
+  jitter() {
 
     this.jitterTick++;
 
@@ -52,10 +53,11 @@ class Fly {
   }
 
   //UPDATE
-  update () {
-    
+  update() {
+
     //Run the physics function
     this.physics();
     this.jitter();
+    this.flySpeedinc()
   }
 }
