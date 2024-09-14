@@ -1,10 +1,10 @@
 
 //var speed;
-class Fly {
+class Bird {
   constructor(xv) {
 
-    //Setting all the flies vars
-    this.spawnPositions = [GROUND - 75, GROUND - 120];
+    //Setting all the birds vars
+    this.spawnPositions = [GROUND - 90, GROUND - 130];
     this.x = canvas.width;
     this.y = this.spawnPositions[randomInt(0, this.spawnPositions.length - 1)];
     this.w = 15;
@@ -18,10 +18,10 @@ class Fly {
   }
 
 
-  //FLY SPEED INC
-  flySpeedinc() {
+  //bird SPEED INC
+  birdSpeedinc() {
     //If the score is 300
-    if (speedHelper >= 300) {
+    if (speedHelper >= 500) {
       speedHelper = 0;
       scrollSpeed++;
     }
@@ -31,14 +31,14 @@ class Fly {
   physics() {
 
     this.xv = -scrollSpeed;
-    //Makes the fly go to the left
+    //Makes the bird go to the left
     this.x += this.xv;
   }
 
   //DRAW
   draw() {
 
-    //Fly color black
+    //bird color black
     ctx.fillStyle = 'black';
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
@@ -48,7 +48,7 @@ class Fly {
 
     this.jitterTick++;
 
-    //Make the fly jitter around
+    //Make the bird jitter around
     this.x += (Math.sin(this.jitterTick * this.jitterIntensity));
     this.y += (Math.sin(this.jitterTick * this.jitterIntensity));
   }
@@ -59,6 +59,6 @@ class Fly {
     //Run the physics function
     this.physics();
     this.jitter();
-    this.flySpeedinc()
+    this.birdSpeedinc()
   }
 }
