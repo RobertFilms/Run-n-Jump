@@ -19,7 +19,7 @@ class Cactus {
 
   physics() {
     this.xv = -scrollSpeed;
-    this.x += this.xv;
+    this.x += this.xv * dt;
   }
 
   draw() {

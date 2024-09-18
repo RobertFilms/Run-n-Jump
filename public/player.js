@@ -6,7 +6,6 @@ class Player {
     this.x = x;
     this.y = y;
     this.yv = 0;
-    this.xv = 0;
     this.w = w;
     this.h = h;
     this.color = 'blue';
@@ -21,8 +20,7 @@ class Player {
 
     //gravity in the works
     this.yv += gravity;
-    this.y += this.yv;
-    this.x += this.xv;
+    this.y += this.yv * dt;
 
     //checks if player is on ground
     if (this.y + this.h >= GROUND) {

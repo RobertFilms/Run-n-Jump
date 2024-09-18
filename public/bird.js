@@ -32,7 +32,7 @@ class Bird {
 
     this.xv = -scrollSpeed;
     //Makes the bird go to the left
-    this.x += this.xv;
+    this.x += this.xv * dt;
   }
 
   //DRAW

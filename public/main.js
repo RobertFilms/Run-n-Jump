@@ -1,7 +1,7 @@
 /*
 //**----- TO DO LIST -----**\\
 1. Add sprites
-2.
+2. 
 */
 
 //Base game const setting up canvas and the death screen video
@@ -29,6 +29,8 @@ let groundColor = '#c3b949';
 let gameSong = new Audio('public/audio/game.mp3');
 let gameMaxVolume = 0.5;
 let songPlaying = false;
+let then = Date.now();
+let dt = 0;
 //In hard mode the scroll speed starts at 20
 var scrollSpeed = 15;
 //In hard mode the max speed is 35
@@ -159,10 +161,24 @@ addEventListener('keydown', () => {
   songPlaying = true;
 });
 
+//DELTA TIME
+function getDeltaTime() {
+  let now = Date.now()
+  let dt = (now - then);
+  then = now;
+
+  return dt / (1000 / 60);
+}
+
 //UPDATE GAME
 function update() {
   //Reset canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  console.log(getDeltaTime());
+
+  //Set the delta time
+  dt = getDeltaTime();
+
   //If player has died then stop the game
   if (player.dead) {
     return;
@@ -181,8 +197,8 @@ function update() {
   //****ADD SPRITE FOR CACTI HERE****
 
   //Spawn and update birds on the map
-  for (f in birds) {
-    let bird = birds[f];
+  for (b in birds) {
+    let bird = birds[b];
     bird.draw();
     bird.update();
     if (collision(player, bird)) {
@@ -191,10 +207,10 @@ function update() {
 
     //Delete birds that are off map
     if (bird.x < 0) {
-      birds.splice(f, 1);
+      birds.splice(b, 1);
     }
   }
-
+  
   //Spawn and update cati on the map
   for (c in cacti) {
     let cactus = cacti[c];
