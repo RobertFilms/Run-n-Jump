@@ -14,6 +14,7 @@ class Bird {
     this.jitterTick = 0;
     this.sprite = new Image();
     this.sprite.src = '';
+    this.dead = false;
     //speed = this.xv;
   }
 
@@ -32,7 +33,7 @@ class Bird {
 
     this.xv = -scrollSpeed;
     //Makes the bird go to the left
-    this.x += this.xv * dt;
+    this.x += this.xv; // * dt;
   }
 
   //DRAW

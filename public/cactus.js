@@ -8,6 +8,7 @@ class Cactus {
     this.xv = 0;
     this.sprite = new Image();
     this.sprite.src = 'public/sprites/cactus.png';
+    this.dead = false;
   }
 
   cacSpeedinc() {
@@ -19,7 +20,7 @@ class Cactus {
 
   physics() {
     this.xv = -scrollSpeed;
-    this.x += this.xv * dt;
+    this.x += this.xv; // * dt;
   }
 
   draw() {

@@ -49,6 +49,7 @@ let player = new Player(125, 425, 25, 25);
 //Make the lists of birds and cacti
 let birds = [];
 let cacti = [];
+let deadList = [];
 
 //DRAW GROUND
 function drawGround() {
@@ -162,6 +163,7 @@ addEventListener('keydown', () => {
 });
 
 //DELTA TIME
+/*
 function getDeltaTime() {
   let now = Date.now()
   let dt = (now - then);
@@ -169,21 +171,22 @@ function getDeltaTime() {
 
   return dt / (1000 / 60);
 }
+*/
 
 //UPDATE GAME
 function update() {
   //Reset canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  console.log(getDeltaTime());
 
   //Set the delta time
-  dt = getDeltaTime();
+  //dt = getDeltaTime();
+  //console.log(dt);
 
   //If player has died then stop the game
   if (player.dead) {
     return;
   }
-  //console.log(birds.xv);
+  //console.log(birds.xv);s
 
   //Load in the player and draw the ground
   player.draw();
@@ -199,6 +202,11 @@ function update() {
   //Spawn and update birds on the map
   for (b in birds) {
     let bird = birds[b];
+    if (bird.dead) {
+      birds.splice(b, 1);
+      b--;
+      continue;
+    }
     bird.draw();
     bird.update();
     if (collision(player, bird)) {
@@ -207,13 +215,18 @@ function update() {
 
     //Delete birds that are off map
     if (bird.x < 0) {
-      birds.splice(b, 1);
+      bird.dead = true;
     }
   }
   
   //Spawn and update cati on the map
   for (c in cacti) {
     let cactus = cacti[c];
+    if(cactus.dead){
+      cacti.splice(c, 1);
+      c--;
+      continue;
+    }
     cactus.draw();
     cactus.update();
     if (collision(player, cactus)) {
@@ -222,7 +235,7 @@ function update() {
 
     //Delete cacti that are off map
     if (cactus.x < 0) {
-      cacti.splice(c, 1);
+      cactus.dead = true;
     }
   }
 
@@ -230,6 +243,8 @@ function update() {
   if (player.dead) {
     showDeathScreen();
   }
+
+  deadList.splice(0, deadList.length);
 
   requestAnimationFrame(update);
 }

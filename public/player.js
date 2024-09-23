@@ -20,7 +20,7 @@ class Player {
 
     //gravity in the works
     this.yv += gravity;
-    this.y += this.yv * dt;
+    this.y += this.yv;//* dt;
 
     //checks if player is on ground
     if (this.y + this.h >= GROUND) {
