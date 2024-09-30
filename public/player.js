@@ -1,3 +1,4 @@
+
 //New class player
 class Player {
   constructor(x, y, w, h, dead) {
@@ -12,7 +13,7 @@ class Player {
     this.onGround = false;
     this.dead = false;
     this.jumping = false;
-    this.jumpHeight = 22;
+    this.jumpHeight = 23;
   }
 
   //THIS FUNCTION IS MAKING THE PLAYERS PHYSICS
@@ -20,7 +21,7 @@ class Player {
 
     //gravity in the works
     this.yv += gravity;
-    this.y += this.yv;//* dt;
+    this.y += this.yv * dt;
 
     //checks if player is on ground
     if (this.y + this.h >= GROUND) {

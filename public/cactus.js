@@ -1,10 +1,10 @@
 class Cactus {
   constructor() {
-    this.spawnPos = GROUND - 64;
+    this.spawnPos = GROUND - 78;
     this.x = canvas.width;
     this.y = this.spawnPos;
-    this.w = 45;
-    this.h = 65;
+    this.w = 50;
+    this.h = 80;
     this.xv = 0;
     this.sprite = new Image();
     this.sprite.src = 'public/sprites/cactus.png';
@@ -20,7 +20,7 @@ class Cactus {
 
   physics() {
     this.xv = -scrollSpeed;
-    this.x += this.xv; // * dt;
+    this.x += this.xv * dt;
   }
 
   draw() {

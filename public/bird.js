@@ -7,13 +7,13 @@ class Bird {
     this.spawnPositions = [GROUND - 90, GROUND - 130];
     this.x = canvas.width;
     this.y = this.spawnPositions[randomInt(0, this.spawnPositions.length - 1)];
-    this.w = 15;
-    this.h = 15;
+    this.w = 40;
+    this.h = 30;
     this.xv = 0;
     this.jitterIntensity = 1;
     this.jitterTick = 0;
     this.sprite = new Image();
-    this.sprite.src = '';
+    this.sprite.src = 'public/sprites/bird.png';
     this.dead = false;
     //speed = this.xv;
   }
@@ -33,15 +33,23 @@ class Bird {
 
     this.xv = -scrollSpeed;
     //Makes the bird go to the left
-    this.x += this.xv; // * dt;
+    this.x += this.xv * dt;
   }
 
   //DRAW
   draw() {
 
-    //bird color black
-    ctx.fillStyle = 'black';
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    //sprite
+    const frameWidth = this.sprite.width / 3;
+    const frameHeight = this.sprite.height / 3;
+    const totalFrames = 9;
+    const fps = 15;
+    const frameDuration = 1000 / fps;
+    const currentFrame = Math.floor(Date.now() / frameDuration) % totalFrames;
+    const sx = (currentFrame % 3) * frameWidth;
+    const sy = Math.floor(currentFrame / 3) * frameHeight;
+
+    ctx.drawImage(this.sprite, sx, sy, frameWidth, frameHeight, this.x, this.y, this.w, this.h);
   }
 
   //JITTER

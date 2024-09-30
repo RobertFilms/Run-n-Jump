@@ -31,8 +31,14 @@ let gameMaxVolume = 0.5;
 let songPlaying = false;
 let then = Date.now();
 let dt = 0;
+
+//Set the modes
+var easy = false;
+var medium = true;
+var hard = false;
+
 //In hard mode the scroll speed starts at 20
-var scrollSpeed = 15;
+var scrollSpeed = 16;
 //In hard mode the max speed is 35
 var maxSpeed = 30;
 
@@ -44,7 +50,7 @@ gameSong.loop = true;
 const GROUND = canvas.height / 1.5;
 
 //Add a player to teh game
-let player = new Player(125, 425, 25, 25);
+let player = new Player(125, 425, 40, 50);
 
 //Make the lists of birds and cacti
 let birds = [];
@@ -83,7 +89,7 @@ function Spawnbird() {
   //If random number is greater than 5 spawn tiny bird
   if (randomInt(1, 10) > 5) {
     let bird = new Bird();
-    let cactiRange = 30;
+    let cactiRange = 100;
     //Add a new bird to the list of all of them
     birds.push(bird);
 
@@ -163,7 +169,6 @@ addEventListener('keydown', () => {
 });
 
 //DELTA TIME
-/*
 function getDeltaTime() {
   let now = Date.now()
   let dt = (now - then);
@@ -171,7 +176,37 @@ function getDeltaTime() {
 
   return dt / (1000 / 60);
 }
-*/
+
+function easyMode() {
+  //Set the modes
+  easy = true;
+  medium = false;
+  hard = false;
+
+  //Set the scroll speed and max
+  scrollSpeed = 12;
+  scrollMax = 25;
+}
+function mediumMode() {
+  //Set the modes
+  easy = false;
+  medium = true;
+  hard = false;
+
+  //Set the scroll speed and max
+  scrollSpeed = 16;
+  scrollMax = 27;
+}
+function hardMode() {
+  //Set the modes
+  easy = false;
+  medium = false;
+  hard = true;
+
+  //Set the scroll speed and max
+  scrollSpeed = 20;
+  scrollMax = 33;
+}
 
 //UPDATE GAME
 function update() {
@@ -179,7 +214,7 @@ function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   //Set the delta time
-  //dt = getDeltaTime();
+  dt = getDeltaTime();
   //console.log(dt);
 
   //If player has died then stop the game
@@ -218,11 +253,11 @@ function update() {
       bird.dead = true;
     }
   }
-  
+
   //Spawn and update cati on the map
   for (c in cacti) {
     let cactus = cacti[c];
-    if(cactus.dead){
+    if (cactus.dead) {
       cacti.splice(c, 1);
       c--;
       continue;
