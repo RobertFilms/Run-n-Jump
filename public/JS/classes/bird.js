@@ -13,7 +13,7 @@ class Bird {
     this.jitterIntensity = 1;
     this.jitterTick = 0;
     this.sprite = new Image();
-    this.sprite.src = 'public/sprites/bird.png';
+    this.sprite.src = 'sprites/bird.png';
     this.dead = false;
     //speed = this.xv;
   }
@@ -22,7 +22,7 @@ class Bird {
   //bird SPEED INC
   birdSpeedinc() {
     //If the score is 300
-    if (speedHelper >= 500) {
+    if (speedHelper >= 500 && scrollSpeed <= maxSpeed) {
       speedHelper = 0;
       scrollSpeed++;
     }
@@ -31,7 +31,7 @@ class Bird {
   //PHYSICS
   physics() {
 
-    this.xv = -scrollSpeed;
+    this.xv = -scrollSpeed * dt;
     //Makes the bird go to the left
     this.x += this.xv * dt;
   }
@@ -39,11 +39,11 @@ class Bird {
   //DRAW
   draw() {
 
-    //sprite
+    //Sprite sheet
     const frameWidth = this.sprite.width / 3;
     const frameHeight = this.sprite.height / 3;
     const totalFrames = 9;
-    const fps = 15;
+    const fps = 10;
     const frameDuration = 1000 / fps;
     const currentFrame = Math.floor(Date.now() / frameDuration) % totalFrames;
     const sx = (currentFrame % 3) * frameWidth;

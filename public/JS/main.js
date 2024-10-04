@@ -1,6 +1,6 @@
 /*
 //**----- TO DO LIST -----**\\
-1. Add sprites
+1. Fix cacti glitching
 2. 
 */
 
@@ -19,14 +19,14 @@ window.onresize = function () {
   //Canvas is stretched to the browser
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-}
+};
 
 //MAIN GAME VARS
 let score = 0;
 let speedHelper = 0;
 let gravity = 1.5;
 let groundColor = '#c3b949';
-let gameSong = new Audio('public/audio/game.mp3');
+let gameSong = new Audio('audio/game.mp3');
 let gameMaxVolume = 0.5;
 let songPlaying = false;
 let then = Date.now();
@@ -64,7 +64,7 @@ function drawGround() {
   ctx.fillStyle = groundColor;
   //Setting the ground width and height
   ctx.fillRect(0, GROUND, canvas.width, canvas.height - GROUND);
-}
+};
 
 //Check for the space bar being pressed
 document.addEventListener('keydown', event => {
@@ -74,14 +74,14 @@ document.addEventListener('keydown', event => {
     player.jump();
     //console.log(player.jumping);
   }
-})
+});
 
 //RANDOM INTEGER
 function randomInt(min, max) {
 
   //Return a number between the set min and max
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 
 //SPAWN CACTUS
 function Spawnbird() {
@@ -89,7 +89,7 @@ function Spawnbird() {
   //If random number is greater than 5 spawn tiny bird
   if (randomInt(1, 10) > 5) {
     let bird = new Bird();
-    let cactiRange = 100;
+    let cactiRange = 120;
     //Add a new bird to the list of all of them
     birds.push(bird);
 
@@ -100,7 +100,7 @@ function Spawnbird() {
       birds.pop();
     }
   }
-}
+};
 
 //SPAWN CACTUS
 function SpawnCactus() {
@@ -111,13 +111,13 @@ function SpawnCactus() {
     //Add a new cactus to the list of them all
     cacti.push(cactus);
   }
-}
+};
 
 //Self Explanatory ah function
 function showDeathScreen() {
   //Shows death screen
   document.getElementById('deathScreen').style.display = 'inline';
-}
+};
 
 //RESPAWN
 function respawn() {
@@ -133,7 +133,7 @@ function respawn() {
   cacti = [];
   //Run update function to start up the game
   update();
-}
+};
 
 //SCORE
 function scoreAdd() {
@@ -146,7 +146,7 @@ function scoreAdd() {
     //Display the score
     document.getElementById('scoreWhen').innerText = `Your score: ${score}`;
   }
-}
+};
 
 //FADE IN AUDIO
 function fadeIn() {
@@ -158,7 +158,7 @@ function fadeIn() {
       clearInterval(interval);
     }
   }, 100);
-}
+};
 
 //When you jump start the audio
 addEventListener('keydown', () => {
@@ -175,8 +175,9 @@ function getDeltaTime() {
   then = now;
 
   return dt / (1000 / 60);
-}
+};
 
+//SET EASY MODE
 function easyMode() {
   //Set the modes
   easy = true;
@@ -186,7 +187,9 @@ function easyMode() {
   //Set the scroll speed and max
   scrollSpeed = 12;
   scrollMax = 25;
-}
+};
+
+//SET MEDIUM MODE
 function mediumMode() {
   //Set the modes
   easy = false;
@@ -196,7 +199,9 @@ function mediumMode() {
   //Set the scroll speed and max
   scrollSpeed = 16;
   scrollMax = 27;
-}
+};
+
+//SET HARD MODE
 function hardMode() {
   //Set the modes
   easy = false;
@@ -206,7 +211,7 @@ function hardMode() {
   //Set the scroll speed and max
   scrollSpeed = 20;
   scrollMax = 33;
-}
+};
 
 //UPDATE GAME
 function update() {
@@ -215,7 +220,7 @@ function update() {
 
   //Set the delta time
   dt = getDeltaTime();
-  //console.log(dt);
+  console.log(dt);
 
   //If player has died then stop the game
   if (player.dead) {
@@ -282,10 +287,10 @@ function update() {
   deadList.splice(0, deadList.length);
 
   requestAnimationFrame(update);
-}
+};
 
 //Run the update function and set the spawns and score to activate at said times
 update();
 setInterval(SpawnCactus, randomInt(500, 1300));
 setInterval(Spawnbird, randomInt(500, 1300));
-setInterval(scoreAdd, 100)
+setInterval(scoreAdd, 100);

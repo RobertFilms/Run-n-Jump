@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run n' Jump</title>
+    <style>
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #deathScreen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #title {
+            font-size: 100px;
+            color: rgb(152, 20, 156);
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        #deathScreen h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        #deathScreen button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #cf0ebf;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #deathScreen button:hover {
+            background-color: #a5008f;
+        }
+
+        #myVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+    </style>
+    <canvas id="canvas"></canvas>
+    <script src="JS/classes/cactus.js"></script>
+    <script src="JS/classes/player.js"></script>
+    <script src="JS/classes/bird.js"></script>
+    <script src="JS/collision.js"></script>
+    <script src="JS/main.js"></script>
+</head>
+
+<body>
+    <div id="scoreWhen"></div>
+    <div id="deathScreen">
+        <h1 id="da">You have died...</h1>
+        <button id="resetbtn" onClick="respawn()">Respawn</button>
+        <a href="index.html">
+            <button id="menuButton" onClick="">Main Menu</button>
+        </a>
+        <video autoplay muted loop id="myVideo" src="videos/WIN.mp4" type="video/mp4"></video>
+
+    </div>
+</body>
+
+</html>

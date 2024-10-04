@@ -20,7 +20,7 @@ class Player {
   physics() {
 
     //gravity in the works
-    this.yv += gravity;
+    this.yv += gravity * dt;
     this.y += this.yv * dt;
 
     //checks if player is on ground
@@ -41,12 +41,12 @@ class Player {
       this.dead = true;
     }
 
-    /*
+    //If player is somehow below the ground
     if (this.y + this.h > canvas.h) {
       this.y = canvas.h - this.h;
       this.onGround = true;
     }
-    */
+    
     //console.log(this.yv);
   }
 

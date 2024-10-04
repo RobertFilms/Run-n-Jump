@@ -7,19 +7,19 @@ class Cactus {
     this.h = 80;
     this.xv = 0;
     this.sprite = new Image();
-    this.sprite.src = 'public/sprites/cactus.png';
+    this.sprite.src = 'sprites/cactus.png';
     this.dead = false;
   }
 
   cacSpeedinc() {
-    if (speedHelper >= 500) {
+    if (speedHelper >= 500 && scrollSpeed <= maxSpeed) {
       speedHelper = 0;
       scrollSpeed++;
     }
   }
 
   physics() {
-    this.xv = -scrollSpeed;
+    this.xv = -scrollSpeed * dt;
     this.x += this.xv * dt;
   }
 
