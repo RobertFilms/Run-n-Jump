@@ -89,7 +89,7 @@ function Spawnbird() {
   //If random number is greater than 5 spawn tiny bird
   if (randomInt(1, 10) > 5) {
     let bird = new Bird();
-    let cactiRange = 120;
+    let cactiRange = 160;
     //Add a new bird to the list of all of them
     birds.push(bird);
 
@@ -98,8 +98,12 @@ function Spawnbird() {
     });
     if (overLappingCacti) {
       birds.pop();
-    }
-  }
+    };
+    //Delete birds that are off map
+    if (bird.y < 0) {
+      birds.pop();
+    };
+  };
 };
 
 //SPAWN CACTUS
@@ -110,7 +114,11 @@ function SpawnCactus() {
     let cactus = new Cactus();
     //Add a new cactus to the list of them all
     cacti.push(cactus);
-  }
+  };
+  //Delete cacti that are off map
+  if (cactus.x < 0) {
+    cacti.pop();
+  };
 };
 
 //Self Explanatory ah function
@@ -218,9 +226,12 @@ function update() {
   //Reset canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  console.log(birds.length);
+  console.log(cacti.length);
+
   //Set the delta time
   dt = getDeltaTime();
-  console.log(dt);
+  //console.log(dt);
 
   //If player has died then stop the game
   if (player.dead) {
